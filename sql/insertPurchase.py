@@ -11,10 +11,6 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
-conn.commit()
-cur.close()
-conn.close()
-
 with open('Purchasing/Purchasing.PurchasingOrderLines.csv', 'r') as file:
     reader = csv.reader(file, delimiter=';')
     next(reader)
