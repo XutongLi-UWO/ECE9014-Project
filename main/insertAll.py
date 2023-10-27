@@ -45,8 +45,8 @@ with open('Application/Application.People.csv', 'r') as file:
     next(reader)  
     for row in reader:
         cur.execute(
-            "INSERT INTO People (PersonID, FullName, PreferredName, SearchName, IsEmployee, IsSalesperson) VALUES (%s, %s, %s, %s, %s, %s)",
-            (row[0], row[1], row[2], row[3], row[4], row[5])
+            "INSERT INTO People (PersonID, FullName, PreferredName, IsEmployee, IsSalesperson) VALUES (%s, %s, %s, %s, %s)",
+            (row[0], row[1], row[2], row[4], row[5])
         )
 
 
@@ -187,8 +187,8 @@ with open('Warehouse/Warehouse.StockItemHoldings.csv', 'r') as file:
             if row[i] == "NULL":
                 row[i] = None
         cur.execute(
-            "INSERT INTO StockItemHoldings (StockItemID, QuantityOnHand, BinLocation, LastStocktakeQuantity, LastCostPrice, ReorderLevel, TargetStockLevel) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-            (row[0], row[1], row[2], row[3], row[4], row[5], row[6])
+            "INSERT INTO StockItemHoldings (StockItemID, QuantityOnHand, BinLocation, LastStocktakeQuantity, LastCostPrice, TargetStockLevel) VALUES (%s, %s, %s, %s, %s, %s)",
+            (row[0], row[1], row[2], row[3], row[4], row[6])
         )
 
 
@@ -202,8 +202,8 @@ with open('Purchasing/Purchasing.Suppliers.csv', 'r') as file:
             if row[i] == "NULL":
                 row[i] = None
         cur.execute(
-            "INSERT INTO Suppliers (SupplierID, SupplierName, SupplierCategoryID, PrimaryContactPersonID, AlternateContactPersonID, DeliveryMethodID, DeliveryCityID, PostalCityID, SupplierReference, PaymentDays, PhoneNumber, WebsiteURL, DeliveryAddressLine, DeliveryLocationLat, DeliveryLocationLong) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14])
+            "INSERT INTO Suppliers (SupplierID, SupplierName, SupplierCategoryID, PrimaryContactPersonID, AlternateContactPersonID, DeliveryMethodID, DeliveryCityID, PostalCityID, SupplierReference, PaymentDays, PhoneNumber, WebsiteURL, DeliveryAddressLine) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12])
         )
 
 
@@ -215,8 +215,8 @@ with open('Purchasing/Purchasing.PurchaseOrders.csv', 'r') as file:
     next(reader)
     for row in reader:
         cur.execute(
-            "INSERT INTO PurchaseOrders (PurchaseOrderID, SupplierID, OrderDate, DeliveryMethodID, ContactPersonID, ExpectedDeliveryDate, SupplierReference, IsOrderFinalized) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])
+            "INSERT INTO PurchaseOrders (PurchaseOrderID, SupplierID, OrderDate, DeliveryMethodID, ContactPersonID, SupplierReference, IsOrderFinalized) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+            (row[0], row[1], row[2], row[3], row[4], row[6], row[7])
         )
 
 
@@ -231,8 +231,8 @@ with open('Warehouse/Warehouse.StockItems.csv', 'r') as file:
             if row[i] == "NULL":
                 row[i] = None
         cur.execute(
-            "INSERT INTO StockItems (StockItemID, StockItemName, SupplierID, ColorID, UnitPackageID, OuterPackageID, Brand, Size, LeadTimeDays, QuantityPerOuter, IsChillerStock, Barcode, TaxRate, UnitPrice, RecommendedRetailPrice, TypicalWeightPerUnit) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15])
+            "INSERT INTO StockItems (StockItemID, StockItemName, SupplierID, ColorID, UnitPackageID, OuterPackageID, Brand, Size, LeadTimeDays, QuantityPerOuter, IsChillerStock, Barcode, TaxRate, UnitPrice, TypicalWeightPerUnit) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[15])
         )
 
 
@@ -246,8 +246,8 @@ with open('Purchasing/Purchasing.PurchaseOrderLines.csv', 'r') as file:
             if row[i] == "NULL":
                 row[i] = None
         cur.execute(
-            "INSERT INTO PurchaseOrderLines (PurchaseOrderLineID, PurchaseOrderID, StockItemID, OrderedOuters, Description, ReceivedOuters, PackageTypeID, ExpectedUnitPricePerOuter, LastReceiptDate, IsOrderLineFinalized) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9])
+            "INSERT INTO PurchaseOrderLines (PurchaseOrderLineID, PurchaseOrderID, StockItemID, OrderedOuters, Description, ReceivedOuters, PackageTypeID, LastReceiptDate, IsOrderLineFinalized) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[8], row[9])
         )
 
 
@@ -261,8 +261,8 @@ with open('Purchasing/Purchasing.SupplierTransactions.csv', 'r') as file:
             if row[i] == "NULL":
                 row[i] = None
         cur.execute(
-            "INSERT INTO SupplierTransactions (SupplierTransactionID, SupplierID, TransactionTypeID, PurchaseOrderID, PaymentMethodID, SupplierInvoiceNumber, TransactionDate, AmountExcludingTax, TaxAmount, TransactionAmount, OutstandingBalance, FinalizationDate, IsFinalized) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12])
+            "INSERT INTO SupplierTransactions (SupplierTransactionID, SupplierID, TransactionTypeID, PurchaseOrderID, PaymentMethodID, SupplierInvoiceNumber, TransactionDate, AmountExcludingTax, FinalizationDate, IsFinalized) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[11], row[12])
         )
 
 
@@ -294,8 +294,8 @@ with open('Sales/Sales.Orders.csv', 'r') as file:
             elif i == 6 or i == 7:  
                 row[i] = reformat_date(row[i])
         cur.execute(
-            "INSERT INTO Orders (OrderID, CustomerID, SalespersonPersonID, PickedByPersonID, ContactPersonID, BackorderOrderID, OrderDate, ExpectedDeliveryDate, CustomerPurchaseOrderNumber, IsUndersupplyBackordered, PickingCompletedWhen) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10])
+            "INSERT INTO Orders (OrderID, CustomerID, SalespersonPersonID, PickedByPersonID, ContactPersonID, BackorderOrderID, OrderDate, CustomerPurchaseOrderNumber, IsUndersupplyBackordered, PickingCompletedWhen) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[8], row[9], row[10])
         )
 
 
@@ -326,8 +326,8 @@ with open('Sales/Sales.CustomerTransactions.csv', 'r') as file:
             if row[i] == "NULL":
                 row[i] = None
         cur.execute(
-            "INSERT INTO CustomerTransactions (CustomerTransactionID, CustomerID, TransactionTypeID, InvoiceID, PaymentMethodID, TransactionDate, AmountExcludingTax, TaxAmount, TransactionAmount, OutstandingBalance, FinalizationDate, IsFinalized) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11])
+            "INSERT INTO CustomerTransactions (CustomerTransactionID, CustomerID, TransactionTypeID, InvoiceID, PaymentMethodID, TransactionDate, AmountExcludingTax, FinalizationDate, IsFinalized) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[10], row[11])
         )
 
 
@@ -340,8 +340,8 @@ with open('Sales/Sales.InvoiceLines.csv', 'r') as file:
             if row[i] == "NULL":
                 row[i] = None
         cur.execute(
-            "INSERT INTO InvoiceLines (InvoiceLineID, InvoiceID, StockItemID, Description, PackageTypeID, Quantity, UnitPrice, TaxRate, TaxAmount, LineProfit, ExtendedPrice) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10])
+            "INSERT INTO InvoiceLines (InvoiceLineID, InvoiceID, StockItemID, Description, PackageTypeID, Quantity, UnitPrice, LineProfit, ExtendedPrice) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[9], row[10])
         )
 
 
@@ -356,8 +356,8 @@ with open('Sales/Sales.OrderLines.csv', 'r') as file:
             if row[i] == "NULL":
                 row[i] = None
         cur.execute(
-            "INSERT INTO OrderLines (OrderLineID, OrderID, StockItemID, Description, PackageTypeID, Quantity, UnitPrice, TaxRate, PickedQuantity, PickingCompletedWhen) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9])
+            "INSERT INTO OrderLines (OrderLineID, OrderID, StockItemID, Description, PackageTypeID, Quantity, UnitPrice, PickedQuantity) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+            (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[8])
         )
 
 
