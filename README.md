@@ -5,12 +5,14 @@
 2. [Relevant Links](#relevant-links)
 3. [Dataset](#dataset)
     
-    3.1. [Description](#project-description)
+    3.1. [Description](#description)
 
     3.2. [Business Rules](#business-rules)
 
     3.2. [Entity Relationship Diagrams](#entity-relationship-diagram)
-4. [SQL Implementation](#)
+4. [SQL Implementation](#sql-implementation)
+
+    4.1. [Relation Model](#relation-model)
 
 ## Contributors
 - Weixi Sun email address: wsun293@uwo.ca
@@ -19,12 +21,13 @@
 
 ## Relevant Links
 
-[Dataset Source](https://www.kaggle.com/datasets/pauloviniciusornelas/wwimporters)
-[Entity Relationship Diagrams]()
+- [Dataset Source](https://www.kaggle.com/datasets/pauloviniciusornelas/wwimporters)
+- [Entity Relationship Diagrams](https://app.diagrams.net/?src=about#G1J-wjOcQm5Tx5u6U7EXWBaevWjFE6iLkM)
+- [GitHub](https://github.com/XutongLi-UWO/ECE9014-Project)
 
 ## Dataset
 
-### Project Description
+### Description
 
 In this 
 Overall, these tables offer critical information that assists a logistics organisation in properly managing and tracking its sales, purchases, orders, and warehouse operations.
@@ -226,6 +229,13 @@ Each supplier must correspond to a supplier category, but each supplier category
 
 ### Entity Relationship Diagrams
 
+
+![Diagram](ECE9014_Project_Part1-main_Diagram.png)
+
+## SQL Implementation
+
+### Relation Model
+
 #### Applications:
 
 - Application.TransactionTypes (3NF)
@@ -364,8 +374,8 @@ Each supplier must correspond to a supplier category, but each supplier category
 
 - Warehouse.PackageTypes (3NF)
 
-| PackageTypeID | PackageTypeName |     |
-|-------------------|---------------------|-----|
+| PackageTypeID | PackageTypeName | 
+|-------------------|---------------------|
 
 - Warehouse.Colors (3NF)
 
