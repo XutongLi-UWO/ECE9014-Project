@@ -226,150 +226,150 @@ Each supplier must correspond to a supplier category, but each supplier category
 
 ### Entity Relationship Diagrams
 
-**Applications:**
+#### Applications:
 
-- **Application.TransactionTypes (3NF)**
+- Application.TransactionTypes (3NF)
 
-| **TransactionTypeID** | **TransactionTypeName** |
+| TransactionTypeID | TransactionTypeName |
 |-----------------------|-------------------------|
 
-- **Application.DeliveryMethods (3NF)**
+- Application.DeliveryMethods (3NF)
 
-| **DeliveryMethodID** | **DeliveryMethodName** |
+| DeliveryMethodID | DeliveryMethodName |
 |----------------------|------------------------|
 
-- **Application.People(3NF)**
+- Application.People(3NF)
 
-| **PersonID** | **FullName** | **PreferredName** | **IsEmployee** | **IsSalesperson** |
+| PersonID | FullName | PreferredName | IsEmployee | IsSalesperson |
 |----------|--------------|-----------------------|------------|--------------|
 
--  **Application.StateProvinces (3NF)**
+-  Application.StateProvinces (3NF)
 
-| **StateProvinceID** | **StateProvinceCode** | **StateProvinceName** | **CountryID** | **SalesTerritory** | **LatestRecordedPopulation** |
+| StateProvinceID | StateProvinceCode | StateProvinceName | CountryID | SalesTerritory | LatestRecordedPopulation |
 |-----------|-------------|----------------|--------|-----------|----------------|
 
 
-- **Application.PaymentMethods (3NF)**
+- Application.PaymentMethods (3NF)
 
-| **PaymentMethodID** | **PaymentMethodName** |
+| PaymentMethodID | PaymentMethodName |
 |---------------------|-----------------------|
 
-- **Application.Countries (3NF)**
+- Application.Countries (3NF)
 
-| **CountryID** | **CountryName** | **FormalName** | **LatestRecordedPopulation** | **Continent** | **Region** | **Subregion** |
+| CountryID | CountryName | FormalName | LatestRecordedPopulation | Continent | Region | Subregion |
 |--------|-----------|------------|-------------------|--------|------|-----------|
 
-- **Application.Cities (3NF)**
+- Application.Cities (3NF)
 
-| **CityID** | **CityName** | **StateProvinceID** | **Latitude** | **Longitude** | **LatestRecordedPopulation** |
+| CityID | CityName | StateProvinceID | Latitude | Longitude | LatestRecordedPopulation |
 |-------|-----------|-------------|------------|------------|--------------------|
 
-- **Purchasing:**
+#### Purchasing:
 
-- **Purchasing.SupplierTransactions(3NF)**
+- Purchasing.SupplierTransactions(3NF)
 
-| **SupplierTransactionID** | **SupplierID** | **TransactionTypeID** | **PurchaseOrderID** | **PaymentMethodID** | **SupplierInvoiceNumber** | **TransactionDate** | **AmountExcludingTax** | **FinalizationDate** | **IsFinalized** |
+| SupplierTransactionID | SupplierID | TransactionTypeID | PurchaseOrderID | PaymentMethodID | SupplierInvoiceNumber | TransactionDate | AmountExcludingTax | FinalizationDate | IsFinalized |
 |----------|-----|--------|-------|--------|---------|-------|---------|-------|-----|
 
-- **Purchasing.Suppliers (3NF)**
+- Purchasing.Suppliers (3NF)
 
-| **SupplierID** | **SupplierName** | **SupplierCategoryID** | **PrimaryContactPersonID** | **AlternateContactPersonID** | **DeliveryMethodID** | **DeliveryCityID** | **PostalCityID** | **SupplierReference** | **PaymentDays** | **PhoneNumber** | **WebsiteURL** | **DeliveryAddressLine** |
+| SupplierID | SupplierName | SupplierCategoryID | PrimaryContactPersonID | AlternateContactPersonID | DeliveryMethodID | DeliveryCityID | PostalCityID | SupplierReference | PaymentDays | PhoneNumber | WebsiteURL | DeliveryAddressLine |
 |-----|-----|-------|--------|--------|------|-----|-----|------|-----|-----|-----|-------|
 
-- **Purchasing.SupplierCategories (3NF)**
+- Purchasing.SupplierCategories (3NF)
 
-| **SupplierCategoryID** | **SupplierCategoryName** |
+| SupplierCategoryID | SupplierCategoryName |
 |------------------------|--------------------------|
 
-- **Purchasing.PurchaseOrders (3NF)**
+- Purchasing.PurchaseOrders (3NF)
 
-| **PurchaseOrderID** | **SupplierID** | **OrderDate** | **DeliveryMethodID** | **ContactPersonID** | **SupplierReference** | **IsOrderFinalized** |
+| PurchaseOrderID | SupplierID | OrderDate | DeliveryMethodID | ContactPersonID | SupplierReference | IsOrderFinalized |
 |------------|--------|--------|------------|------------|------------|-----------|
 
-**Purchasing.PurchaseOrderLines (3NF)**
+- Purchasing.PurchaseOrderLines (3NF)
 
-| **PurchaseOrderLineID** | **PurchaseOrderID** | **StockItemID** | **OrderedOuters** | **Description** | **ReceivedOuters** | **PackageTypeID** | **LastReceiptDate** | **IsOrderLineFinalized** |
+| PurchaseOrderLineID | PurchaseOrderID | StockItemID | OrderedOuters | Description | ReceivedOuters | PackageTypeID | LastReceiptDate | IsOrderLineFinalized |
 |-----------|---------|-------|--------|-------|--------|--------|--------|----------|
 
-**Sales:**
+#### Sales:
 
-- **Sales.Orders (3NF)**
+- Sales.Orders (3NF)
 
-| **OrderID** | **CustomerID** | **SalespersonPersonID** | **PickedByPersonID** | **ContactPersonID** | **BackorderOrderID** | **OrderDate** | **CustomerPurchaseOrderNumber** | **IsUndersupplyBackordered** | **PickingCompletedWhen** |
+| OrderID | CustomerID | SalespersonPersonID | PickedByPersonID | ContactPersonID | BackorderOrderID | OrderDate | CustomerPurchaseOrderNumber | IsUndersupplyBackordered | PickingCompletedWhen |
 |-----|------|--------|--------|-------|-------|-----|------------|----------|---------|
 
-- **Sales.CustomerCategories (3NF)**
+- Sales.CustomerCategories (3NF)
 
-| **CustomerCategoryID** | **CustomerCategoryName** |
+| CustomerCategoryID | CustomerCategoryName |
 |------------------------|--------------------------|
 
-- **Sales.OrderLines (3NF)**
+- Sales.OrderLines (3NF)
 
-| **OrderLineID** | **OrderID** | **StockItemID** | **Description** | **PackageTypeID** | **Quantity** | **UnitPrice** | **PickedQuantity** |
+| OrderLineID | OrderID | StockItemID | Description | PackageTypeID | Quantity | UnitPrice | PickedQuantity |
 |----------|-------|----------|---------|------------|--------|--------|-----------|
 
-- **Sales.BuyingGroups (3NF)**
+- Sales.BuyingGroups (3NF)
 
-| **BuyingGroupID** | **BuyingGroupName** |
+| BuyingGroupID | BuyingGroupName |
 |-------------------|---------------------|
 
-- **Sales.Invoices (3NF)**
+- Sales.Invoices (3NF)
 
-| **InvoiceID** | **CustomerID** | **BillToCustomerID** | **OrderID** | **DeliveryMethodID** | **ContactPersonID** | **AccountsPersonID** | **SalespersonPersonID** | **PackedByPersonID** | **InvoiceDate** | **CustomerPurchaseOrderNumber** | **DeliveryInstructions** | **TotalDryItems** | **TotalChillerItems** | **ConfirmedDeliveryTime** | **ConfirmedReceivedBy** |
+| InvoiceID | CustomerID | BillToCustomerID | OrderID | DeliveryMethodID | ContactPersonID | AccountsPersonID | SalespersonPersonID | PackedByPersonID | InvoiceDate | CustomerPurchaseOrderNumber | DeliveryInstructions | TotalDryItems | TotalChillerItems | ConfirmedDeliveryTime | ConfirmedReceivedBy |
 |----|----|-----|---|-----|-----|-----|------|-----|----|--------|-----|----|-----|------|------|
 
-**Sales.InvoiceLines(3NF)**
+- Sales.InvoiceLines(3NF)
 
-| **InvoiceLineID** | **InvoiceID** | **StockItemID** | **Description** | **PackageTypeID** | **Quantity** | **UnitPrice** | **LineProfit** | **ExtendedPrice** |
+| InvoiceLineID | InvoiceID | StockItemID | Description | PackageTypeID | Quantity | UnitPrice | LineProfit | ExtendedPrice |
 |----------|-------|---------|--------|----------|-------|-------|-------|----------|
 
-**Sales.CustomerTransactions (3NF)**
+- Sales.CustomerTransactions (3NF)
 
-| **CustomerTransactionID** | **CustomerID** | **TransactionTypeID** | **InvoiceID** | **PaymentMethodID** | **TransactionDate** | **AmountExcludingTax** | **FinalizationDate** | **IsFinalized** |
+| CustomerTransactionID | CustomerID | TransactionTypeID | InvoiceID | PaymentMethodID | TransactionDate | AmountExcludingTax | FinalizationDate | IsFinalized |
 |------------|-------|---------|------|---------|--------|----------|--------|------|
 
-**Sales.Customers (3NF)**
+- Sales.Customers (3NF)
 
-| **CustomerID** | **CustomerName** | **BillToCustomerID** | **CustomerCategoryID** | **BuyingGroupID** | **PrimaryContactPersonID** | **AlternateContactPersonID** | **DeliveryMethodID** | **DeliveryCityID** | **CreditLimit** | **AccountOpenedDate** | **StandardDiscountPercentage** | **IsStatementSent** | **IsOnCreditHold** | **PaymentDays** | **PhoneNumber** | **WebsiteURL** | **DeliveryAddressLine** | **DeliveryLocationLat** | **DeliveryLocationLong** |
+| CustomerID | CustomerName | BillToCustomerID | CustomerCategoryID | BuyingGroupID | PrimaryContactPersonID | AlternateContactPersonID | DeliveryMethodID | DeliveryCityID | CreditLimit | AccountOpenedDate | StandardDiscountPercentage | IsStatementSent | IsOnCreditHold | PaymentDays | PhoneNumber | WebsiteURL | DeliveryAddressLine | DeliveryLocationLat | DeliveryLocationLong |
 |---|----|----|----|----|-----|-----|----|----|---|----|------|----|----|----|----|---|----|----|-----|
 
-**Warehouse:**
+#### Warehouse:
 
-**Warehouse.StockItemStockGroups (3NF)**
+- Warehouse.StockItemStockGroups (3NF)
 
-| **StockItemStockGroupID** | **StockItemID** | **StockGroupID** |
+| StockItemStockGroupID | StockItemID | StockGroupID |
 |---------------------------|-----------------|------------------|
 
-**Warehouse.StockItemTransactions (3NF)**
+- Warehouse.StockItemTransactions (3NF)
 
-| **StockItemTransactionID** | **StockItemID** | **TransactionTypeID** | **CustomerID** | **InvoiceID** | **SupplierID** | **PurchaseOrderID** | **TransactionOccurredWhen** | **Quantity** |
+| StockItemTransactionID | StockItemID | TransactionTypeID | CustomerID | InvoiceID | SupplierID | PurchaseOrderID | TransactionOccurredWhen | Quantity |
 |------------|-------|---------|-------|------|------|---------|-------------|------|
 
-**（是库存仅出货，要么customer/invoice是NULL，要么supplier/purchaseorderID是NULL，可以考虑拆开）**
 
-**Warehouse.StockItems (3NF)**
 
-| **StockItemID** | **StockItemName** | **SupplierID** | **ColorID** | **UnitPackageID** | **OuterPackageID** | **Brand** | **Size** | **LeadTimeDays** | **QuantityPerOuter** | **IsChillerStock** | **Barcode** | **TaxRate** | **UnitPrice** | **RecommendedRetailPrice** | **TypicalWeightPerUnit** |
+- Warehouse.StockItems (3NF)
+
+| StockItemID | StockItemName | SupplierID | ColorID | UnitPackageID | OuterPackageID | Brand | Size | LeadTimeDays | QuantityPerOuter | IsChillerStock | Barcode | TaxRate | UnitPrice | RecommendedRetailPrice | TypicalWeightPerUnit |
 |-----|------|----|----|-----|------|---|---|-----|------|-----|----|----|----|--------|-------|
 
-**Warehouse.StockItemHoldings (3NF)**
+- Warehouse.StockItemHoldings (3NF)
 
-| **StockItemID** | **QuantityOnHand** | **BinLocation** | **LastStocktakeQuantity** | **LastCostPrice** | **ReorderLevel** | **TargetStockLevel** |
+| StockItemID | QuantityOnHand | BinLocation | LastStocktakeQuantity | LastCostPrice | ReorderLevel | TargetStockLevel |
 |---------|-----------|---------|---------------|----------|----------|------------|
 
-**Warehouse.StockGroups (3NF)**
+- Warehouse.StockGroups (3NF)
 
-| **StockGroupID** | **StockGroupName** |
+| StockGroupID | StockGroupName |
 |------------------|--------------------|
 
-**Warehouse.PackageTypes (3NF)**
+- Warehouse.PackageTypes (3NF)
 
-| **PackageTypeID** | **PackageTypeName** |     |
+| PackageTypeID | PackageTypeName |     |
 |-------------------|---------------------|-----|
 
-**Warehouse.Colors (3NF)**
+- Warehouse.Colors (3NF)
 
-| **ColorID** | **ColorName** |
+| ColorID | ColorName |
 |-------------|---------------|
 
 
