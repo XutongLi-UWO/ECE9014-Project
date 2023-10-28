@@ -16,7 +16,7 @@
 
 ## Contributors
 - Weixi Sun email address: wsun293@uwo.ca
-- Xutong Li email address: 
+- Xutong Li email address: xli3494@uwo.ca
 - En Yang email address: eyang87@uwo.ca
 
 ## Relevant Links
