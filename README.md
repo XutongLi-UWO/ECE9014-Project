@@ -29,8 +29,12 @@
 
 ### Description
 
-In this 
-Overall, these tables offer critical information that assists a logistics organisation in properly managing and tracking its sales, purchases, orders, and warehouse operations.
+This project is divided into four sections: *Application*, *Purchase*, *Sales*, and *Warehouse*. 
+
+*Applications* give some basic information for other sections, such as person and location information. *Purchase* tracks transactions with suppliers, *Sales* records transactions with customers, and *Warehouse* records how many stock goods they have.
+
+Overall, these tables provide vital information that supports a logistics organisation in correctly managing and tracking its sales, purchases, orders, and warehousing operations.
+
 
 #### Applications
 
