@@ -14,6 +14,7 @@
 5. [SQL Implementation](#sql-implementation)
 
     4.1. [Relation Model](#relation-model)
+6. [Screenshots](#screenshots)
 
 ## Contributors
 - Weixi Sun email address: wsun293@uwo.ca
@@ -392,5 +393,27 @@ Each supplier must correspond to a supplier category, but each supplier category
 
 | ColorID | ColorName |
 |-------------|---------------|
+
+
+## Screenshots
+
+#### The initial table:
+![Diagram](ECE9014_Project_Part1-Creating_tables.png)
+
+
+#### Few examples of the tables:
+
+- StockItemHoldings
+
+![Diagram](StockItemHoldings.png)
+
+- People
+  
+![Diagram](People.png)
+
+- Invoices
+  
+![Diagram](invoices.png)
+
 
 
