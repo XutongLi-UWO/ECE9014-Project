@@ -2,15 +2,16 @@
 
 ## Table of Contents
 1. [Contributors](#contributors)
-2. [Relevant Links](#relevant-links)
-3. [Dataset](#dataset)
+2. [How to Run the Code](#how-to-run-the-code)
+3. [Relevant Links](#relevant-links)
+4. [Dataset](#dataset)
     
     3.1. [Description](#description)
 
     3.2. [Business Rules](#business-rules)
 
-    3.2. [Entity Relationship Diagrams](#entity-relationship-diagram)
-4. [SQL Implementation](#sql-implementation)
+    3.2. [Entity Relationship Diagrams](#entity-relationship-diagrams)
+5. [SQL Implementation](#sql-implementation)
 
     4.1. [Relation Model](#relation-model)
 
@@ -18,6 +19,12 @@
 - Weixi Sun email address: wsun293@uwo.ca
 - Xutong Li email address: xli3494@uwo.ca
 - En Yang email address: eyang87@uwo.ca
+
+## How to Run the Code
+- Need python **psycopg2**
+- Open a new Qury Tool in pgAdmin4
+- Open main/createAll.sql then run -- This process is to create new tables in local host database
+- Open terminal/command line, go to project dir, run the insertAll.py, then the terminal/command line will ask the informations of your local database, type in the informations
 
 ## Relevant Links
 
