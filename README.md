@@ -395,5 +395,25 @@ Each supplier must correspond to a supplier category, but each supplier category
 |-------------|---------------|
 
 
+## Screenshots
+
+#### The initial table:
+![Diagram](ECE9014_Project_Part1-Creating_tables.png)
+
+
+#### Few examples of the tables:
+
+- StockItemHoldings
+
+![Diagram](StockItemHoldings.png)
+
+- People
+  
+![Diagram](People.png)
+
+- Invoices
+  
+![Diagram](invoices.png)
+
 
 
