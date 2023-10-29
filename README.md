@@ -393,68 +393,14 @@ Each supplier must correspond to a supplier category, but each supplier category
 
 
 ## SQL Schema
+
 - Our project is based on python
 - Required install python **psycopg2**
 
 
-file path is 
+File directory displays as 
 
-\- ECE9014-PROJECT
-
-\-- main
-
-\--- Application
-
-\--- Purchasing
-
-\--- Sales
-
-\--- Warehouse
-
-
--- used_files
-
-1. Open a new Qury Tool in pgAdmin4
-
-- create all tables
-
-1. Open main/createAll.sql then run in pgAdmin4 (This process is to create new tables in local host database ) 
-2. Open terminal, go to project dir, run 
-```python
-python script.py --username custom_username --password your_password  # Custom username provided
-```
-
-
-run the insertAll.py, then the terminal/command line will ask the informations of your local database, type in the informations
-
-- create Partly tables, {Application} or {Purchase} or {Sales} or {Warehouse}
-
-
-
-
-
-## Screenshots
-
-#### The initial table:
-![Diagram](images/ECE9014_Project_Part1-Creating_tables.png)
-
-
-#### Few examples of the tables:
-
-- StockItemHoldings
-
-![Diagram](images/StockItemHoldings.png)
-
-- People
-  
-![Diagram](images/People.png)
-
-- Invoices
-  
-![Diagram](images/invoices.png)
-
-
-
+```zsh
 ECE9014-Project
  ┣ dataset_original
  ┃ ┣ Application
@@ -482,3 +428,52 @@ ECE9014-Project
  ┣ README.md
  ┣ run.json
  ┗ script.py
+```
+
+
+###  Create All Tables
+
+1. Create new tables in the local host database:
+    execute the SQL script `main/createAll.sql` in pgAdmin4 to create all the required tables.
+
+2. Set the PostgreSQL username and password for your local database:
+ run the following Python script to set the username and password in terminal. You can also specify the database name, host, and port if needed:
+     ```shell
+     python script.py --username your_username --password your_password
+     ```
+
+3. Insert data into the newly created tables: run the `insertAll.py` script in the terminal.
+
+### Create Specific Parts of the Tables (e.g., Application, Purchase, Sales, Warehouse)
+
+1. Create new tables for the specific part in the local host database: open the relevant SQL script (e.g., `main/createApplication.sql`, `main/createPurchase.sql`, etc.) and execute it in pgAdmin4 to create the specific tables.
+
+2. Set the PostgreSQL username and password for your local database, following the steps outlined in the previous section.
+
+3. Insert data into the newly created tables: run the relevant insert script (e.g., `insertApplication.py`, `insertPurchase.py`, etc.) in the terminal. It will prompt you for the information required to insert data into your local database.
+
+
+
+
+## Screenshots
+
+#### The initial table:
+![Diagram](images/ECE9014_Project_Part1-Creating_tables.png)
+
+
+#### Few examples of the tables:
+
+- StockItemHoldings
+
+![Diagram](images/StockItemHoldings.png)
+
+- People
+  
+![Diagram](images/People.png)
+
+- Invoices
+  
+![Diagram](images/invoices.png)
+
+
+
