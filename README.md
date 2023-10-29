@@ -19,9 +19,9 @@
     4.3. [Screenshots](#screenshots)
 
 ## Contributors
-- Weixi Sun email address: wsun293@uwo.ca
-- Xutong Li email address: xli3494@uwo.ca
-- En Yang email address: eyang87@uwo.ca
+- Weixi Sun, student number: 251351613, email address: wsun293@uwo.ca
+- Xutong Li, student number: 251387444, email address: xli3494@uwo.ca
+- En Yang, student number: 251379609, email address: eyang87@uwo.ca
 
 
 ## Relevant Links
