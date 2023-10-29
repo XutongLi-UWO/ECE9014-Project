@@ -18,11 +18,10 @@ conn = psycopg2.connect(
 cur = conn.cursor()
 
 
-
-
 def reformat_date(date_str):
     date_parts = date_str.split("/")
     return f"{date_parts[2]}-{date_parts[1]}-{date_parts[0]}"
+
 
 with open('Application/Application.TransactionTypes.csv', 'r') as file:
     reader = csv.reader(file, delimiter=';')  
@@ -32,7 +31,6 @@ with open('Application/Application.TransactionTypes.csv', 'r') as file:
             "INSERT INTO TransactionTypes (TransactionTypeID, TransactionTypeName) VALUES (%s, %s)",
             (row[0], row[1])
         )
-
 
 
 with open('Application/Application.DeliveryMethods.csv', 'r') as file:
@@ -45,7 +43,6 @@ with open('Application/Application.DeliveryMethods.csv', 'r') as file:
         )
 
 
-
 with open('Application/Application.People.csv', 'r') as file:
     reader = csv.reader(file, delimiter=';')  
     next(reader)  
@@ -54,8 +51,6 @@ with open('Application/Application.People.csv', 'r') as file:
             "INSERT INTO People (PersonID, FullName, PreferredName, IsEmployee, IsSalesperson) VALUES (%s, %s, %s, %s, %s)",
             (row[0], row[1], row[2], row[4], row[5])
         )
-
-
 
 
 with open('Application/Application.Countries.csv', 'r') as file:
@@ -68,7 +63,6 @@ with open('Application/Application.Countries.csv', 'r') as file:
         )
 
 
-
 with open('Application/Application.PaymentMethods.csv', 'r') as file:
     reader = csv.reader(file, delimiter=';')  
     next(reader)  
@@ -77,8 +71,6 @@ with open('Application/Application.PaymentMethods.csv', 'r') as file:
             "INSERT INTO PaymentMethods (PaymentMethodID, PaymentMethodName) VALUES (%s, %s)",
             (row[0], row[1])
         )
-
-
 
 
 with open('Application/Application.StateProvinces.csv', 'r') as file:
@@ -103,7 +95,6 @@ with open('Application/Application.Cities.csv', 'r') as file:
         )
 
 
-
 with open('Purchasing/Purchasing.SupplierCategories.csv', 'r') as file:
     reader = csv.reader(file, delimiter=';')
     next(reader)
@@ -112,6 +103,7 @@ with open('Purchasing/Purchasing.SupplierCategories.csv', 'r') as file:
             "INSERT INTO SupplierCategories (SupplierCategoryID, SupplierCategoryName) VALUES (%s, %s)",
             (row[0], row[1])
         )
+
 
 with open('Sales/Sales.BuyingGroups.csv', 'r') as file:
     reader = csv.reader(file, delimiter=';')
@@ -124,7 +116,6 @@ with open('Sales/Sales.BuyingGroups.csv', 'r') as file:
             "INSERT INTO BuyingGroups (BuyingGroupID, BuyingGroupName) VALUES (%s, %s)",
             (row[0], row[1])
         )
-
 
 
 with open('Sales/Sales.CustomerCategories.csv', 'r') as file:
@@ -140,8 +131,6 @@ with open('Sales/Sales.CustomerCategories.csv', 'r') as file:
         )
 
 
-
-
 with open('Warehouse/Warehouse.StockGroups.csv', 'r') as file:
     reader = csv.reader(file, delimiter=';')
     next(reader)
@@ -153,7 +142,6 @@ with open('Warehouse/Warehouse.StockGroups.csv', 'r') as file:
             "INSERT INTO StockGroups (StockGroupID, StockGroupName) VALUES (%s, %s)",
             (row[0], row[1])
         )
-
 
 
 with open('Warehouse/Warehouse.Colors.csv', 'r') as file:
@@ -169,8 +157,6 @@ with open('Warehouse/Warehouse.Colors.csv', 'r') as file:
         )
 
 
-
-
 with open('Warehouse/Warehouse.PackageTypes.csv', 'r') as file:
     reader = csv.reader(file, delimiter=';')
     next(reader)
@@ -182,7 +168,6 @@ with open('Warehouse/Warehouse.PackageTypes.csv', 'r') as file:
             "INSERT INTO PackageTypes (PackageTypeID, PackageTypeName) VALUES (%s, %s)",
             (row[0], row[1])
         )
-
 
 
 with open('Warehouse/Warehouse.StockItemHoldings.csv', 'r') as file:
@@ -198,8 +183,6 @@ with open('Warehouse/Warehouse.StockItemHoldings.csv', 'r') as file:
         )
 
 
-
-
 with open('Purchasing/Purchasing.Suppliers.csv', 'r') as file:
     reader = csv.reader(file, delimiter=';')
     next(reader)
@@ -213,9 +196,6 @@ with open('Purchasing/Purchasing.Suppliers.csv', 'r') as file:
         )
 
 
-
-
-
 with open('Purchasing/Purchasing.PurchaseOrders.csv', 'r') as file:
     reader = csv.reader(file, delimiter=';')
     next(reader)
@@ -224,9 +204,6 @@ with open('Purchasing/Purchasing.PurchaseOrders.csv', 'r') as file:
             "INSERT INTO PurchaseOrders (PurchaseOrderID, SupplierID, OrderDate, DeliveryMethodID, ContactPersonID, SupplierReference, IsOrderFinalized) VALUES (%s, %s, %s, %s, %s, %s, %s)",
             (row[0], row[1], row[2], row[3], row[4], row[6], row[7])
         )
-
-
-
 
 
 with open('Warehouse/Warehouse.StockItems.csv', 'r') as file:
@@ -242,8 +219,6 @@ with open('Warehouse/Warehouse.StockItems.csv', 'r') as file:
         )
 
 
-
-
 with open('Purchasing/Purchasing.PurchaseOrderLines.csv', 'r') as file:
     reader = csv.reader(file, delimiter=';')
     next(reader)
@@ -257,8 +232,6 @@ with open('Purchasing/Purchasing.PurchaseOrderLines.csv', 'r') as file:
         )
 
 
-
-
 with open('Purchasing/Purchasing.SupplierTransactions.csv', 'r') as file:
     reader = csv.reader(file, delimiter=';')
     next(reader)
@@ -270,7 +243,6 @@ with open('Purchasing/Purchasing.SupplierTransactions.csv', 'r') as file:
             "INSERT INTO SupplierTransactions (SupplierTransactionID, SupplierID, TransactionTypeID, PurchaseOrderID, PaymentMethodID, SupplierInvoiceNumber, TransactionDate, AmountExcludingTax, FinalizationDate, IsFinalized) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
             (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[11], row[12])
         )
-
 
 
 with open('Sales/Sales.Customers.csv', 'r') as file:
@@ -288,8 +260,6 @@ with open('Sales/Sales.Customers.csv', 'r') as file:
         )
 
 
-
-
 with open('Sales/Sales.Orders.csv', 'r') as file:
     reader = csv.reader(file, delimiter=';')
     next(reader) 
@@ -303,9 +273,6 @@ with open('Sales/Sales.Orders.csv', 'r') as file:
             "INSERT INTO Orders (OrderID, CustomerID, SalespersonPersonID, PickedByPersonID, ContactPersonID, BackorderOrderID, OrderDate, CustomerPurchaseOrderNumber, IsUndersupplyBackordered, PickingCompletedWhen) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
             (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[8], row[9], row[10])
         )
-
-
-
 
 
 with open('Sales/Sales.Invoices.csv', 'r') as file:
@@ -323,7 +290,6 @@ with open('Sales/Sales.Invoices.csv', 'r') as file:
         )
 
 
-
 with open('Sales/Sales.CustomerTransactions.csv', 'r') as file:
     reader = csv.reader(file, delimiter=';')
     next(reader)
@@ -335,7 +301,6 @@ with open('Sales/Sales.CustomerTransactions.csv', 'r') as file:
             "INSERT INTO CustomerTransactions (CustomerTransactionID, CustomerID, TransactionTypeID, InvoiceID, PaymentMethodID, TransactionDate, AmountExcludingTax, FinalizationDate, IsFinalized) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
             (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[10], row[11])
         )
-
 
 
 with open('Sales/Sales.InvoiceLines.csv', 'r') as file:
@@ -351,9 +316,6 @@ with open('Sales/Sales.InvoiceLines.csv', 'r') as file:
         )
 
 
-
-
-
 with open('Sales/Sales.OrderLines.csv', 'r') as file:
     reader = csv.reader(file, delimiter=';')
     next(reader)
@@ -365,7 +327,6 @@ with open('Sales/Sales.OrderLines.csv', 'r') as file:
             "INSERT INTO OrderLines (OrderLineID, OrderID, StockItemID, Description, PackageTypeID, Quantity, UnitPrice, PickedQuantity) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
             (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[8])
         )
-
 
 
 with open('Warehouse/Warehouse.StockItemStockGroups.csv', 'r') as file:
@@ -392,8 +353,6 @@ with open('Warehouse/Warehouse.StockItemTransactions.csv', 'r') as file:
             "INSERT INTO StockItemTransactions (StockItemTransactionID, StockItemID, TransactionTypeID, CustomerID, InvoiceID, SupplierID, PurchaseOrderID, TransactionOccurredWhen, Quantity) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
             (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8])
         )
-
-
 
 
 conn.commit()
