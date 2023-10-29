@@ -394,10 +394,42 @@ Each supplier must correspond to a supplier category, but each supplier category
 
 ## SQL Schema
 - Our project is based on python
-- Need install python **psycopg2**
-- Open a new Qury Tool in pgAdmin4
-- Open main/createAll.sql then run -- This process is to create new tables in local host database
-- Open terminal/command line, go to project dir, run the insertAll.py, then the terminal/command line will ask the informations of your local database, type in the informations
+- Required install python **psycopg2**
+
+
+file path is 
+
+\- ECE9014-PROJECT
+
+\-- main
+
+\--- Application
+
+\--- Purchasing
+
+\--- Sales
+
+\--- Warehouse
+
+
+-- used_files
+
+1. Open a new Qury Tool in pgAdmin4
+
+- create all tables
+
+1. Open main/createAll.sql then run in pgAdmin4 (This process is to create new tables in local host database ) 
+2. Open terminal, go to project dir, run 
+```python
+python script.py --username custom_username --password your_password  # Custom username provided
+```
+
+
+run the insertAll.py, then the terminal/command line will ask the informations of your local database, type in the informations
+
+- create Partly tables, {Application} or {Purchase} or {Sales} or {Warehouse}
+
+
 
 
 
@@ -423,3 +455,30 @@ Each supplier must correspond to a supplier category, but each supplier category
 
 
 
+ECE9014-Project
+ ┣ dataset_original
+ ┃ ┣ Application
+ ┃ ┣ Purchasing
+ ┃ ┣ Sales
+ ┃ ┣ Warehouse
+ ┣ images
+ ┣ main
+ ┃ ┣ Application
+ ┃ ┣ Purchasing
+ ┃ ┣ Sales
+ ┃ ┣ Warehouse
+ ┃ ┣ createAll.sql
+ ┃ ┗ insertAll.py
+ ┣ used_files
+ ┃ ┣ createApplication.sql
+ ┃ ┣ createPurchase.sql
+ ┃ ┣ createSale.sql
+ ┃ ┣ createWarehouse.sql
+ ┃ ┣ insertApplication.py
+ ┃ ┣ insertPurchase.py
+ ┃ ┣ insertSales.py
+ ┃ ┗ insertWarehouse.py
+ ┣ .gitignore
+ ┣ README.md
+ ┣ run.json
+ ┗ script.py
