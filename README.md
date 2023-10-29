@@ -2,7 +2,6 @@
 
 ## Table of Contents
 1. [Contributors](#contributors)
-2. [How to Run the Code](#how-to-run-the-code)
 3. [Relevant Links](#relevant-links)
 4. [Dataset](#dataset)
     
@@ -14,18 +13,16 @@
 5. [SQL Implementation](#sql-implementation)
 
     4.1. [Relation Model](#relation-model)
-6. [Screenshots](#screenshots)
+   
+    4.2. [SQL Schema](#sql-schema)
+   
+    4.3. [Screenshots](#screenshots)
 
 ## Contributors
 - Weixi Sun email address: wsun293@uwo.ca
 - Xutong Li email address: xli3494@uwo.ca
 - En Yang email address: eyang87@uwo.ca
 
-## How to Run the Code
-- Need python **psycopg2**
-- Open a new Qury Tool in pgAdmin4
-- Open main/createAll.sql then run -- This process is to create new tables in local host database
-- Open terminal/command line, go to project dir, run the insertAll.py, then the terminal/command line will ask the informations of your local database, type in the informations
 
 ## Relevant Links
 
@@ -252,147 +249,156 @@ Each supplier must correspond to a supplier category, but each supplier category
 
 - Application.TransactionTypes (3NF)
 
-| TransactionTypeID | TransactionTypeName |
+| TransactionTypeID(PK) | TransactionTypeName |
 |-----------------------|-------------------------|
 
 - Application.DeliveryMethods (3NF)
 
-| DeliveryMethodID | DeliveryMethodName |
+| DeliveryMethodID(PK) | DeliveryMethodName |
 |----------------------|------------------------|
 
 - Application.People(3NF)
 
-| PersonID | FullName | PreferredName | IsEmployee | IsSalesperson |
+| PersonID(PK) | FullName | PreferredName | IsEmployee | IsSalesperson |
 |----------|--------------|-----------------------|------------|--------------|
 
 -  Application.StateProvinces (3NF)
 
-| StateProvinceID | StateProvinceCode | StateProvinceName | CountryID | SalesTerritory | LatestRecordedPopulation |
+| StateProvinceID(PK) | CountryID(FK) | StateProvinceName | StateProvinceCode | SalesTerritory | LatestRecordedPopulation |
 |-----------|-------------|----------------|--------|-----------|----------------|
 
 
 - Application.PaymentMethods (3NF)
 
-| PaymentMethodID | PaymentMethodName |
+| PaymentMethodID(PK) | PaymentMethodName |
 |---------------------|-----------------------|
 
 - Application.Countries (3NF)
 
-| CountryID | CountryName | FormalName | LatestRecordedPopulation | Continent | Region | Subregion |
+| CountryID(PK) | CountryName | FormalName | LatestRecordedPopulation | Continent | Region | Subregion |
 |--------|-----------|------------|-------------------|--------|------|-----------|
 
 - Application.Cities (3NF)
 
-| CityID | CityName | StateProvinceID | Latitude | Longitude | LatestRecordedPopulation |
+| CityID(PK) | StateProvinceID(FK) | CityName | Latitude | Longitude | LatestRecordedPopulation |
 |-------|-----------|-------------|------------|------------|--------------------|
 
 #### Purchasing:
 
 - Purchasing.SupplierTransactions(3NF)
 
-| SupplierTransactionID | SupplierID | TransactionTypeID | PurchaseOrderID | PaymentMethodID | SupplierInvoiceNumber | TransactionDate | AmountExcludingTax | FinalizationDate | IsFinalized |
+| SupplierTransactionID(PK) | SupplierID(FK) | TransactionTypeID(FK) | PurchaseOrderID(FK) | PaymentMethodID(FK) | SupplierInvoiceNumber | TransactionDate | AmountExcludingTax | FinalizationDate | IsFinalized |
 |----------|-----|--------|-------|--------|---------|-------|---------|-------|-----|
 
 - Purchasing.Suppliers (3NF)
 
-| SupplierID | SupplierName | SupplierCategoryID | PrimaryContactPersonID | AlternateContactPersonID | DeliveryMethodID | DeliveryCityID | PostalCityID | SupplierReference | PaymentDays | PhoneNumber | WebsiteURL | DeliveryAddressLine |
+| SupplierID(PK) | SupplierCategoryID(FK) | PrimaryContactPersonID(FK) | AlternateContactPersonID(FK) | DeliveryMethodID(FK) | DeliveryCityID(FK) | PostalCityID(FK) | SupplierReference | PaymentDays | PhoneNumber | WebsiteURL | DeliveryAddressLine | SupplierName |
 |-----|-----|-------|--------|--------|------|-----|-----|------|-----|-----|-----|-------|
 
 - Purchasing.SupplierCategories (3NF)
 
-| SupplierCategoryID | SupplierCategoryName |
+| SupplierCategoryID(PK) | SupplierCategoryName |
 |------------------------|--------------------------|
 
 - Purchasing.PurchaseOrders (3NF)
 
-| PurchaseOrderID | SupplierID | OrderDate | DeliveryMethodID | ContactPersonID | SupplierReference | IsOrderFinalized |
+| PurchaseOrderID(PK) | SupplierID(FK) | DeliveryMethodID(FK) | ContactPersonID(FK) | SupplierReference | IsOrderFinalized | OrderDate |
 |------------|--------|--------|------------|------------|------------|-----------|
 
 - Purchasing.PurchaseOrderLines (3NF)
 
-| PurchaseOrderLineID | PurchaseOrderID | StockItemID | OrderedOuters | Description | ReceivedOuters | PackageTypeID | LastReceiptDate | IsOrderLineFinalized |
+| PurchaseOrderLineID(PK) | PurchaseOrderID(FK) | StockItemID(FK) | OrderedOuters | Description | ReceivedOuters | PackageTypeID | LastReceiptDate | IsOrderLineFinalized |
 |-----------|---------|-------|--------|-------|--------|--------|--------|----------|
 
 #### Sales:
 
 - Sales.Orders (3NF)
 
-| OrderID | CustomerID | SalespersonPersonID | PickedByPersonID | ContactPersonID | BackorderOrderID | OrderDate | CustomerPurchaseOrderNumber | IsUndersupplyBackordered | PickingCompletedWhen |
+| OrderID(PK) | CustomerID(FK) | SalespersonPersonID(FK) | PickedByPersonID(FK) | ContactPersonID(FK) | BackorderOrderID(FK) | OrderDate | CustomerPurchaseOrderNumber | IsUndersupplyBackordered | PickingCompletedWhen |
 |-----|------|--------|--------|-------|-------|-----|------------|----------|---------|
 
 - Sales.CustomerCategories (3NF)
 
-| CustomerCategoryID | CustomerCategoryName |
+| CustomerCategoryID(PK) | CustomerCategoryName |
 |------------------------|--------------------------|
 
 - Sales.OrderLines (3NF)
 
-| OrderLineID | OrderID | StockItemID | Description | PackageTypeID | Quantity | UnitPrice | PickedQuantity |
+| OrderLineID(PK) | OrderID(FK) | StockItemID(FK) | PackageTypeID(FK) | Quantity | UnitPrice | PickedQuantity | Description |
 |----------|-------|----------|---------|------------|--------|--------|-----------|
 
 - Sales.BuyingGroups (3NF)
 
-| BuyingGroupID | BuyingGroupName |
+| BuyingGroupID(PK) | BuyingGroupName |
 |-------------------|---------------------|
 
 - Sales.Invoices (3NF)
 
-| InvoiceID | CustomerID | BillToCustomerID | OrderID | DeliveryMethodID | ContactPersonID | AccountsPersonID | SalespersonPersonID | PackedByPersonID | InvoiceDate | CustomerPurchaseOrderNumber | DeliveryInstructions | TotalDryItems | TotalChillerItems | ConfirmedDeliveryTime | ConfirmedReceivedBy |
+| InvoiceID(PK) | CustomerID(FK) | BillToCustomerID(FK) | OrderID(FK) | DeliveryMethodID(FK) | ContactPersonID(FK) | AccountsPersonID(FK) | SalespersonPersonID(FK) | PackedByPersonID(FK) | InvoiceDate | CustomerPurchaseOrderNumber | DeliveryInstructions | TotalDryItems | TotalChillerItems | ConfirmedDeliveryTime | ConfirmedReceivedBy |
 |----|----|-----|---|-----|-----|-----|------|-----|----|--------|-----|----|-----|------|------|
 
 - Sales.InvoiceLines(3NF)
 
-| InvoiceLineID | InvoiceID | StockItemID | Description | PackageTypeID | Quantity | UnitPrice | LineProfit | ExtendedPrice |
+| InvoiceLineID(PK) | InvoiceID(FK) | StockItemID(FK) | PackageTypeID(FK) | Quantity | UnitPrice | LineProfit | ExtendedPrice | Description |
 |----------|-------|---------|--------|----------|-------|-------|-------|----------|
 
 - Sales.CustomerTransactions (3NF)
 
-| CustomerTransactionID | CustomerID | TransactionTypeID | InvoiceID | PaymentMethodID | TransactionDate | AmountExcludingTax | FinalizationDate | IsFinalized |
+| CustomerTransactionID(PK) | CustomerID(FK) | TransactionTypeID(FK) | InvoiceID(FK) | PaymentMethodID(FK) | TransactionDate | AmountExcludingTax | FinalizationDate | IsFinalized |
 |------------|-------|---------|------|---------|--------|----------|--------|------|
 
 - Sales.Customers (3NF)
 
-| CustomerID | CustomerName | BillToCustomerID | CustomerCategoryID | BuyingGroupID | PrimaryContactPersonID | AlternateContactPersonID | DeliveryMethodID | DeliveryCityID | CreditLimit | AccountOpenedDate | StandardDiscountPercentage | IsStatementSent | IsOnCreditHold | PaymentDays | PhoneNumber | WebsiteURL | DeliveryAddressLine | DeliveryLocationLat | DeliveryLocationLong |
+| CustomerID(PK) | BillToCustomerID(FK) | CustomerCategoryID(FK) | BuyingGroupID(FK) | PrimaryContactPersonID(FK) | AlternateContactPersonID(FK) | DeliveryMethodID(FK) | DeliveryCityID(FK) | CreditLimit | AccountOpenedDate | StandardDiscountPercentage | IsStatementSent | IsOnCreditHold | PaymentDays | PhoneNumber | WebsiteURL | DeliveryAddressLine | DeliveryLocationLat | DeliveryLocationLong | CustomerName |
 |---|----|----|----|----|-----|-----|----|----|---|----|------|----|----|----|----|---|----|----|-----|
 
 #### Warehouse:
 
 - Warehouse.StockItemStockGroups (3NF)
 
-| StockItemStockGroupID | StockItemID | StockGroupID |
+| StockItemStockGroupID(PK) | StockItemID(FK) | StockGroupID(FK) |
 |---------------------------|-----------------|------------------|
 
 - Warehouse.StockItemTransactions (3NF)
 
-| StockItemTransactionID | StockItemID | TransactionTypeID | CustomerID | InvoiceID | SupplierID | PurchaseOrderID | TransactionOccurredWhen | Quantity |
+| StockItemTransactionID(PK) | StockItemID(FK) | TransactionTypeID(FK) | CustomerID(FK) | InvoiceID(FK) | SupplierID(FK) | PurchaseOrderID | TransactionOccurredWhen | Quantity |
 |------------|-------|---------|-------|------|------|---------|-------------|------|
 
 
 
 - Warehouse.StockItems (3NF)
 
-| StockItemID | StockItemName | SupplierID | ColorID | UnitPackageID | OuterPackageID | Brand | Size | LeadTimeDays | QuantityPerOuter | IsChillerStock | Barcode | TaxRate | UnitPrice | RecommendedRetailPrice | TypicalWeightPerUnit |
+| StockItemID(PK) | SupplierID(FK) | ColorID(FK) | UnitPackageID(FK) | OuterPackageID(FK) | StockItemName | Brand | Size | LeadTimeDays | QuantityPerOuter | IsChillerStock | Barcode | TaxRate | UnitPrice | RecommendedRetailPrice | TypicalWeightPerUnit |
 |-----|------|----|----|-----|------|---|---|-----|------|-----|----|----|----|--------|-------|
 
 - Warehouse.StockItemHoldings (3NF)
 
-| StockItemID | QuantityOnHand | BinLocation | LastStocktakeQuantity | LastCostPrice | ReorderLevel | TargetStockLevel |
+| StockItemID(PK) | QuantityOnHand | BinLocation | LastStocktakeQuantity | LastCostPrice | ReorderLevel | TargetStockLevel |
 |---------|-----------|---------|---------------|----------|----------|------------|
 
 - Warehouse.StockGroups (3NF)
 
-| StockGroupID | StockGroupName |
+| StockGroupID(PK) | StockGroupName |
 |------------------|--------------------|
 
 - Warehouse.PackageTypes (3NF)
 
-| PackageTypeID | PackageTypeName | 
+| PackageTypeID(PK) | PackageTypeName | 
 |-------------------|---------------------|
 
 - Warehouse.Colors (3NF)
 
-| ColorID | ColorName |
+| ColorID(PK) | ColorName |
 |-------------|---------------|
+
+
+## SQL Schema
+- Our project is based on python
+- Need install python **psycopg2**
+- Open a new Qury Tool in pgAdmin4
+- Open main/createAll.sql then run -- This process is to create new tables in local host database
+- Open terminal/command line, go to project dir, run the insertAll.py, then the terminal/command line will ask the informations of your local database, type in the informations
+
 
 
 ## Screenshots
