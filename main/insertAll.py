@@ -1,19 +1,25 @@
 import csv
 import psycopg2
+import json
 
-dbname_imput = input("Enter database name: ")
-user_imput = input("Enter user name: ")
-password_imput = input("Enter password: ")
-host_imput = input("Enter host: ")
-port_imput = input("Enter port: ")
+json_file_path = "../run.json"
+
+with open(json_file_path, 'r') as json_file:
+    postgres_settings = json.load(json_file)
+
+username = postgres_settings["user"]
+password = postgres_settings["password"]
+dbname = postgres_settings["database"]
+host = postgres_settings["host"]
+port = postgres_settings["port"]
 
 
 conn = psycopg2.connect(
-    dbname = dbname_imput,
-    user = user_imput,
-    password = password_imput,
-    host = host_imput,
-    port = port_imput
+    dbname = dbname,
+    user = username,
+    password = password,
+    host = host,
+    port = port
 )
 cur = conn.cursor()
 

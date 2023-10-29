@@ -239,7 +239,7 @@ Each supplier must correspond to a supplier category, but each supplier category
 ### Entity Relationship Diagrams
 
 
-![Diagram](ECE9014_Project_Part1-main_Diagram.png)
+![Diagram](images/ECE9014_Project_Part1-main_Diagram.png)
 
 ## SQL Implementation
 
@@ -404,22 +404,22 @@ Each supplier must correspond to a supplier category, but each supplier category
 ## Screenshots
 
 #### The initial table:
-![Diagram](ECE9014_Project_Part1-Creating_tables.png)
+![Diagram](images/ECE9014_Project_Part1-Creating_tables.png)
 
 
 #### Few examples of the tables:
 
 - StockItemHoldings
 
-![Diagram](StockItemHoldings.png)
+![Diagram](images/StockItemHoldings.png)
 
 - People
   
-![Diagram](People.png)
+![Diagram](images/People.png)
 
 - Invoices
   
-![Diagram](invoices.png)
+![Diagram](images/invoices.png)
 
 
 
