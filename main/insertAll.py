@@ -7,14 +7,6 @@ password_imput = input("Enter password: ")
 host_imput = input("Enter host: ")
 port_imput = input("Enter port: ")
 
-# conn = psycopg2.connect(
-#     dbname="postgres",
-#     user="postgres",
-#     password="qwer",
-#     host="localhost",
-#     port="5432"
-# )
-# cur = conn.cursor()
 
 conn = psycopg2.connect(
     dbname = dbname_imput,

@@ -40,10 +40,12 @@ CREATE TABLE TransactionTypes (
     TransactionTypeName VARCHAR(255)
 );
 
+
 CREATE TABLE DeliveryMethods (
     DeliveryMethodID INT PRIMARY KEY,
     DeliveryMethodName VARCHAR(255)
 );
+
 
 CREATE TABLE People (
     PersonID INT PRIMARY KEY,
@@ -52,8 +54,6 @@ CREATE TABLE People (
     IsEmployee BOOLEAN,
     IsSalesperson BOOLEAN
 );
-
-
 
 CREATE TABLE Countries (
     CountryID INT PRIMARY KEY,
@@ -70,8 +70,6 @@ CREATE TABLE PaymentMethods (
     PaymentMethodID INT PRIMARY KEY,
     PaymentMethodName VARCHAR(255)
 );
-
-
 
 
 CREATE TABLE StateProvinces (
@@ -95,13 +93,12 @@ CREATE TABLE Cities (
     FOREIGN KEY (StateProvinceID) REFERENCES StateProvinces(StateProvinceID)
 );
 
--- ======
-
 
 CREATE TABLE SupplierCategories (
     SupplierCategoryID INT PRIMARY KEY,
     SupplierCategoryName VARCHAR(255)
 );
+
 
 CREATE TABLE BuyingGroups (
     BuyingGroupID INT PRIMARY KEY,
@@ -113,7 +110,6 @@ CREATE TABLE CustomerCategories (
     CustomerCategoryID INT PRIMARY KEY,
     CustomerCategoryName VARCHAR(255) NOT NULL
 );
-
 
 
 CREATE TABLE StockGroups (
@@ -134,21 +130,14 @@ CREATE TABLE PackageTypes (
 );
 
 
-
-
 CREATE TABLE StockItemHoldings (
     StockItemID INT PRIMARY KEY,
     QuantityOnHand INT,
     BinLocation VARCHAR(255),
     LastStocktakeQuantity INT,
     LastCostPrice DECIMAL(10, 2),
-    -- ReorderLevel INT,
     TargetStockLevel INT
 );
-
-
--- ======
-
 
 
 CREATE TABLE Suppliers (
@@ -165,8 +154,6 @@ CREATE TABLE Suppliers (
     PhoneNumber VARCHAR(50),
     WebsiteURL VARCHAR(255),
     DeliveryAddressLine VARCHAR(255),
-    -- DeliveryLocationLat VARCHAR(255),
-    -- DeliveryLocationLong VARCHAR(255),
     FOREIGN KEY (SupplierCategoryID) REFERENCES SupplierCategories(SupplierCategoryID),
     FOREIGN KEY (PrimaryContactPersonID) REFERENCES People(PersonID),
     FOREIGN KEY (AlternateContactPersonID) REFERENCES People(PersonID),
@@ -175,20 +162,19 @@ CREATE TABLE Suppliers (
     FOREIGN KEY (PostalCityID) REFERENCES Cities(CityID)
 );
 
+
 CREATE TABLE PurchaseOrders (
     PurchaseOrderID INT PRIMARY KEY,
     SupplierID INT,
     OrderDate DATE,
     DeliveryMethodID INT,
     ContactPersonID INT,
-    -- ExpectedDeliveryDate DATE,
     SupplierReference VARCHAR(255),
     IsOrderFinalized BOOLEAN,
     FOREIGN KEY (SupplierID) REFERENCES Suppliers(SupplierID),
     FOREIGN KEY (DeliveryMethodID) REFERENCES DeliveryMethods(DeliveryMethodID),
     FOREIGN KEY (ContactPersonID) REFERENCES People(PersonID)
 );
-
 
 
 CREATE TABLE StockItems (
@@ -206,14 +192,12 @@ CREATE TABLE StockItems (
     Barcode VARCHAR(255),
     TaxRate DECIMAL(10, 3),
     UnitPrice DECIMAL(10, 2),
-    -- RecommendedRetailPrice DECIMAL(10, 2),
     TypicalWeightPerUnit DECIMAL(10, 3),
     FOREIGN KEY (SupplierID) REFERENCES Suppliers(SupplierID),
     FOREIGN KEY (ColorID) REFERENCES Colors(ColorID),
     FOREIGN KEY (UnitPackageID) REFERENCES PackageTypes(PackageTypeID),
     FOREIGN KEY (OuterPackageID) REFERENCES PackageTypes(PackageTypeID)
 );
-
 
 
 CREATE TABLE PurchaseOrderLines (
@@ -224,16 +208,12 @@ CREATE TABLE PurchaseOrderLines (
     Description VARCHAR(255),
     ReceivedOuters INT,
     PackageTypeID INT,
-    -- ExpectedUnitPricePerOuter DECIMAL(10, 2),
     LastReceiptDate DATE,
     IsOrderLineFinalized BOOLEAN,
     FOREIGN KEY (PurchaseOrderID) REFERENCES PurchaseOrders(PurchaseOrderID),
     FOREIGN KEY (PackageTypeID) REFERENCES PackageTypes(PackageTypeID),
     FOREIGN KEY (StockItemID) REFERENCES StockItems(StockItemID)
 );
-
-
-
 
 
 CREATE TABLE SupplierTransactions (
@@ -245,9 +225,6 @@ CREATE TABLE SupplierTransactions (
     SupplierInvoiceNumber VARCHAR(255),
     TransactionDate DATE,
     AmountExcludingTax DECIMAL(10,2),
-    -- TaxAmount DECIMAL(10,2),
-    -- TransactionAmount DECIMAL(10,2),
-    -- OutstandingBalance DECIMAL(10,2),
     FinalizationDate DATE,
     IsFinalized BOOLEAN,
     FOREIGN KEY (SupplierID) REFERENCES Suppliers(SupplierID),
@@ -255,12 +232,6 @@ CREATE TABLE SupplierTransactions (
     FOREIGN KEY (PurchaseOrderID) REFERENCES PurchaseOrders(PurchaseOrderID),
     FOREIGN KEY (PaymentMethodID) REFERENCES PaymentMethods(PaymentMethodID)
 );
-
-
-
-
-
-
 
 
 CREATE TABLE Customers (
@@ -294,7 +265,6 @@ CREATE TABLE Customers (
 );
 
 
-
 CREATE TABLE Orders (
     OrderID INT PRIMARY KEY,
     CustomerID INT,
@@ -303,16 +273,13 @@ CREATE TABLE Orders (
     ContactPersonID INT,
     BackorderOrderID INT,
     OrderDate DATE,
-    -- ExpectedDeliveryDate DATE,
     CustomerPurchaseOrderNumber INT,
     IsUndersupplyBackordered BOOLEAN,
     PickingCompletedWhen TIMESTAMP,
     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
     FOREIGN KEY (SalespersonPersonID) REFERENCES People(PersonID),
     FOREIGN KEY (PickedByPersonID) REFERENCES People(PersonID)
-    -- FOREIGN KEY (BackorderOrderID) REFERENCES Orders(OrderID)
 );
-
 
 
 CREATE TABLE Invoices (
@@ -351,9 +318,6 @@ CREATE TABLE CustomerTransactions (
     PaymentMethodID INT,
     TransactionDate DATE,
     AmountExcludingTax DECIMAL(10, 2),
-    -- TaxAmount DECIMAL(10, 2),
-    -- TransactionAmount DECIMAL(10, 2),
-    -- OutstandingBalance DECIMAL(10, 2),
     FinalizationDate DATE,
     IsFinalized BOOLEAN,
     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
@@ -361,7 +325,6 @@ CREATE TABLE CustomerTransactions (
     FOREIGN KEY (InvoiceID) REFERENCES Invoices(InvoiceID),
     FOREIGN KEY (PaymentMethodID) REFERENCES PaymentMethods(PaymentMethodID)
 );
-
 
 
 CREATE TABLE InvoiceLines (
@@ -372,16 +335,12 @@ CREATE TABLE InvoiceLines (
     PackageTypeID INT,
     Quantity INT,
     UnitPrice DECIMAL(10, 2),
-    -- TaxRate DECIMAL(10, 3),
-    -- TaxAmount DECIMAL(10, 2),
     LineProfit DECIMAL(10, 2),
     ExtendedPrice DECIMAL(10, 2),
     FOREIGN KEY (InvoiceID) REFERENCES Invoices(InvoiceID),
     FOREIGN KEY (StockItemID) REFERENCES StockItems(StockItemID),
     FOREIGN KEY (PackageTypeID) REFERENCES PackageTypes(PackageTypeID)
 );
-
-
 
 
 CREATE TABLE OrderLines (
@@ -392,16 +351,11 @@ CREATE TABLE OrderLines (
     PackageTypeID INT,
     Quantity INT,
     UnitPrice DECIMAL(10, 2),
-    -- TaxRate DECIMAL(10, 3),
     PickedQuantity INT,
-    -- PickingCompletedWhen TIMESTAMP,
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
     FOREIGN KEY (StockItemID) REFERENCES StockItemHoldings(StockItemID),
     FOREIGN KEY (PackageTypeID) REFERENCES PackageTypes(PackageTypeID)
 );
-
-
-
 
 
 CREATE TABLE StockItemStockGroups (
