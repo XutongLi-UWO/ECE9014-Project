@@ -395,7 +395,7 @@ Each supplier must correspond to a supplier category, but each supplier category
 ## SQL Schema
 
 - Our project is based on python
-- Required install python **psycopg2**
+- Required install python **psycopg2** or **psycopg2-binary**
 
 
 - File directory displayed as 
