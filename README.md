@@ -398,7 +398,7 @@ Each supplier must correspond to a supplier category, but each supplier category
 - Required install python **psycopg2**
 
 
-File directory displays as 
+- File directory displayed as 
 
 ```zsh
 ECE9014-Project
